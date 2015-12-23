@@ -1,0 +1,12 @@
+name: sharock_resolver
+version: 0.1.0
+
+dependencies:
+  shards:
+    github: ysbaddaden/shards
+    version: 0.5.3
+
+authors:
+  - Pine Mizune <pinemz@gmail.com>
+
+license: MIT
