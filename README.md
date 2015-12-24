@@ -1,6 +1,6 @@
-# Sharock CLI Resolver
+# Sharock Resolver
 
-CLI based dependency resolver.
+Crystal dependency resolver.
 
 ## Requirements
 
