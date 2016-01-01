@@ -4,8 +4,7 @@ Crystal dependency resolver.
 
 ## Requirements
 
-- Crystal v0.9.1
-- Shards v0.5.3 ~
+- Crystal v0.10.0
 
 ## Build
 
