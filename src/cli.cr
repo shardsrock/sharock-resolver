@@ -15,7 +15,11 @@ module Sharock
     end
 
     def try_run
-      run
+      begin
+        run
+      rescue e : Exception
+        abort e.message
+      end
     end
 
     protected def run
