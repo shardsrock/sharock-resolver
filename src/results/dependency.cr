@@ -9,21 +9,33 @@ module Sharock::Results
     end
 
     def to_json(io : IO)
-      package = @dependency.package
-      repository = @dependency.dependency
-      spec = package.spec
-
       io.json_object do |object|
-        object.field "name", spec.name
-        object.field "description", spec.description
-        object.field "license", spec.license
-        object.field "licenseUrl", spec.license_url
-        object.field "requirements", package.requirements
-        object.field "version", package.version
-        object.field "matchingVersions", package.matching_versions
-        object.field "sortedVersions", package.sorted_versions
-        object.field "repository", repository
+        object.field "name", name
+        object.field "description", description
+        object.field "requiredVersion", requiredVersion
+        object.field "matchedVersion", matchedVersion
+        object.field "latestVersion", latestVersion
       end
+    end
+
+    def name
+      @dependency.package.spec.name
+    end
+
+    def description
+      @dependency.package.spec.description
+    end
+
+    def requiredVersion
+      @dependency.dependency.version
+    end
+
+    def matchedVersion
+      @dependency.package.version
+    end
+
+    def latestVersion
+      @dependency.package.sorted_versions.last?
     end
   end
 end
