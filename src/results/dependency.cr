@@ -15,6 +15,7 @@ module Sharock::Results
         object.field "requiredVersion", requiredVersion
         object.field "matchedVersion", matchedVersion
         object.field "latestVersion", latestVersion
+        object.field "status", status
       end
     end
 
@@ -36,6 +37,16 @@ module Sharock::Results
 
     def latestVersion
       @dependency.package.sorted_versions.last?
+    end
+
+    def status
+      if matchedVersion == latestVersion
+        "up_to_date"
+      elsif requiredVersion == matchedVersion
+        "pinned_out_of_date"
+      else
+        "out_of_date"
+      end
     end
   end
 end
