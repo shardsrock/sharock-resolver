@@ -6,7 +6,7 @@ require "./dependency"
 module Sharock::Results
   class DependencyList
     getter dependencies
-    getter developmentDependencies
+    getter development_dependencies
 
     def initialize(@dependency_list : Resolver::DependencyList)
       @dependencies = to_results(@dependency_list.dependencies)
