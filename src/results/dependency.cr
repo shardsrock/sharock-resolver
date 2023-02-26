@@ -8,15 +8,17 @@ module Sharock::Results
       @dependency = dependency
     end
 
-    def to_json(io : IO)
-      io.json_object do |object|
-        object.field "name", name
-        object.field "description", description
-        object.field "requiredVersion", requiredVersion
-        object.field "matchedVersion", matchedVersion
-        object.field "latestVersion", latestVersion
-        object.field "status", status
-      end
+    def to_json(json : JSON::Builder)
+      #JSON.build do |json|
+        json.object do
+          json.field "name", name
+          json.field "description", description
+          json.field "requiredVersion", requiredVersion
+          json.field "matchedVersion", matchedVersion
+          json.field "latestVersion", latestVersion
+          json.field "status", status
+        end
+      #end
     end
 
     def name

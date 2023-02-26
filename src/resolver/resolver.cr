@@ -1,4 +1,7 @@
-require "shards/resolvers/*"
+require "shards/resolvers/github"
+require "shards/resolvers/path"
+require "shards/resolvers/git"
+require "shards/resolvers/resolver"
 require "shards/config"
 require "shards/dependency"
 require "shards/logger"

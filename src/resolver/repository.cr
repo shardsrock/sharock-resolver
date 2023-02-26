@@ -6,7 +6,8 @@ require "./overrides/dependency"
 module Sharock
   module Resolver
     class Repository
-      property github
+      property github : String?
+      @name : String?
 
       def name : String?
         @name.try { |name| return name }

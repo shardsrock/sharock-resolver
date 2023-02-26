@@ -5,18 +5,21 @@ require "./dependency"
 
 module Sharock::Results
   class DependencyList
-    getter dependencies
-    getter development_dependencies
+    getter dependencies : Array(Sharock::Results::Dependency)
+    getter development_dependencies : Array(Sharock::Results::Dependency)
 
     def initialize(@dependency_list : Resolver::DependencyList)
       @dependencies = to_results(@dependency_list.dependencies)
       @development_dependencies = to_results(@dependency_list.development_dependencies)
     end
 
-    def to_json(io : IO)
-      io.json_object do |object|
-        object.field "dependencies", @dependencies
-        object.field "developmentDependencies", @development_dependencies
+    #def to_json(json : JSON::Builder)
+    def to_json
+      JSON.build do |json|
+        json.object do
+          json.field "dependencies", @dependencies
+          json.field "developmentDependencies", @development_dependencies
+        end
       end
     end
 

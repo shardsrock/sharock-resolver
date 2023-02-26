@@ -4,6 +4,9 @@ require "../results/dependency_list"
 
 module Sharock::Commands
   class Resolve
+    @cache_dir : String
+    @output_file : String?
+    @github : String?
     def initialize(cli)
       @cache_dir = cli.cache_dir
       @output_file = cli.output_file

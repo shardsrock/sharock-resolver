@@ -9,9 +9,10 @@ module Sharock
     getter :github
 
     def initialize(
-                   @cache_dir = Shards::CACHE_DIRECTORY,
-                   @output_file = nil as String?,
-                   @github = nil as String?)
+                   #@cache_dir = Shards::CACHE_DIRECTORY,
+                   @cache_dir = ".shards",
+                   @output_file = nil.as(String?),
+                   @github = nil.as(String?))
     end
 
     def try_run
