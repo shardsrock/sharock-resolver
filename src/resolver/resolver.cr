@@ -1,4 +1,4 @@
-require "shards/resolvers/github"
+#require "shards/resolvers/github"
 require "shards/resolvers/path"
 require "shards/resolvers/git"
 require "shards/resolvers/resolver"
@@ -20,7 +20,7 @@ module Sharock
       def resolve(repository : Repository)
         repository.to_shards_package.try do |package|
           resolver = package.resolver
-          spec = resolver.spec
+          spec = package.not_nil!.spec
 
           DependencyList.new(
             resolve(spec.dependencies),
@@ -31,8 +31,8 @@ module Sharock
 
       protected def resolve(dependencies : Array(Shards::Dependency))
         dependencies.map do |dependency|
-          package = dependency.to_package
-          package.spec
+          package = dependency.to_package.not_nil!
+          package.not_nil!.spec
           Dependency.new(dependency, package)
         end
       end

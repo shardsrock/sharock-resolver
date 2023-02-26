@@ -18,11 +18,11 @@ module Sharock
 
       def to_shards_dependency
         self.name.try do |name|
-          dependency = Shards::Dependency.new(name)
+          dependency = Shards::Dependency.new(name, Shards::GitResolver.new(name, @github.not_nil!))
 
-          @github.try do |github|
-            dependency["github"] = github
-          end
+          #@github.try do |github|
+          #  dependency["github"] = github
+          #end
 
           dependency
         end

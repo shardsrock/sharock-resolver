@@ -4,7 +4,7 @@ require "../resolver/dependency_list"
 
 module Sharock::Results
   class Dependency
-    def initialize(dependency : Resolver::Dependency)
+    def initialize(dependency : Sharock::Resolver::Dependency)
       @dependency = dependency
     end
 
@@ -22,23 +22,23 @@ module Sharock::Results
     end
 
     def name
-      @dependency.package.spec.name
+      @dependency.dependency.as_package?.not_nil!.spec.name
     end
 
     def description
-      @dependency.package.spec.description
+      @dependency.dependency.as_package?.not_nil!.spec.description
     end
 
     def requiredVersion
-      @dependency.dependency.version
+      @dependency.dependency.as_package?.not_nil!.version.to_s
     end
 
     def matchedVersion
-      @dependency.package.version
+      @dependency.dependency.as_package?.not_nil!.version.to_s
     end
 
     def latestVersion
-      @dependency.package.sorted_versions.last?
+      @dependency.dependency.as_package?.not_nil!.sorted_versions.last?.to_s
     end
 
     def status

@@ -5,11 +5,11 @@ CRYSTAL := crystal
 default: clean install build
 
 install:
-	$(CRYSTAL) deps
+	shards install
 
 build:
 	mkdir -p bin
-	$(CRYSTAL) build src/resolver.cr -o bin/resolver
+	$(CRYSTAL) build src/resolver.cr -o bin/resolver --error-trace
 
 release:
 	mkdir -p bin

@@ -7,6 +7,7 @@ module Sharock::Commands
     @cache_dir : String
     @output_file : String?
     @github : String?
+
     def initialize(cli)
       @cache_dir = cli.cache_dir
       @output_file = cli.output_file
@@ -22,7 +23,7 @@ module Sharock::Commands
         result = Results::DependencyList.new(dependency_list)
         json_result = result.to_json
 
-        Sharock.logger.debug json_result
+        Shards::Log.debug { json_result }
 
         @output_file.try do |path|
           File.write(path, json_result)

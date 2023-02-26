@@ -24,12 +24,12 @@ module Sharock
     end
 
     protected def run
-      OptionParser.parse! do |opts|
+      OptionParser.parse do |opts|
         opts.on("--cache-dir=CACHE_DIR", "") { |x| @cache_dir = x }
         opts.on("--output-file=JSON_FILE_PATH", "") { |x| @output_file = x }
         opts.on("--github=OWNER/REPO", "") { |x| @github = x }
-        opts.on("-v", "--verbose", "") { Sharock.logger.level = Logger::Severity::DEBUG }
-        opts.on("-q", "--quiet", "") { Sharock.logger.level = Logger::Severity::WARN }
+        opts.on("-v", "--verbose", "") { Sharock.logger.set_debug_log_level }
+        opts.on("-q", "--quiet", "") { Sharock.logger.set_warning_log_level }
       end
 
       command = Commands::Resolve.new(self)
